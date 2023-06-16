@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
-import './App.scss';
+import './sendETH.scss';
 import { ethers } from 'ethers';
 
-function App() {
+function SendETH() {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     try {
       debugger;
       e.preventDefault();
+      setError('');
+
       if (!window.ethereum) {
         setError('No crypto wallet found. Please install it.');
         return;
@@ -37,19 +39,22 @@ function App() {
       });
     } catch (error) {
       console.log(error.message);
+      setError(error.message);
     }
   };
 
   return (
-    <div className="App">
+    <div className="sendETH">
       <form className="card" onSubmit={handleSubmit}>
         <h3>Send ETH payment</h3>
         <input type="text" name="to" />
         <input type="text" name="amount" />
         <input type="submit" value="PAY NOW" />
+
+        {error && error.length > 0 && <div className="error">{error}</div>}
       </form>
     </div>
   );
 }
 
-export default App;
+export default SendETH;
