@@ -32,11 +32,14 @@ function SendETH() {
         setError('Invalid Address!');
         return;
       }
-      // do transaction
+
+      // ***** if send ETH // do transaction
       const tx = await signer.sendTransaction({
         to: _to,
         value: ethers.utils.parseEther(_amount),
       });
+
+      debugger;
     } catch (error) {
       console.log(error.message);
       setError(error.message);

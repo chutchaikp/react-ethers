@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+
+  .operator {
+    flex: 1;
+  }
+
+  .log {
+    flex: 1;
+  }
+}
